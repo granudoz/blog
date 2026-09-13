@@ -9,5 +9,13 @@
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page"
+  },
+  // Ativado no dashboard; fica aqui pra não ser sobrescrito no próximo deploy.
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true,
+      "persist": true
+    }
   }
 }
