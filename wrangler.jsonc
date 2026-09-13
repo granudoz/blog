@@ -1,0 +1,13 @@
+// Config do Cloudflare Workers. Site 100% estático: só assets, sem código de Worker.
+// Sem este arquivo o Workers Builds injeta o adapter @astrojs/cloudflare no build,
+// o que troca as imagens pré-otimizadas (/_astro/*.webp) pelo endpoint /_image
+// em runtime — que não existe num Worker assets-only e devolve 404.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "blog",
+  "compatibility_date": "2026-09-13",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}
