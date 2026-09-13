@@ -63,9 +63,9 @@ Tokens em `src/styles/tokens.css`, direto do guia em `../IdentidadeVisual/LEIA-M
 
 ## Publicação
 
-GitHub → Cloudflare Pages, build automático a cada push na `main`. Preset Astro: build `npm run build`, output `dist`. Node 24 (`.node-version`).
+GitHub → Cloudflare Workers (assets estáticos), build automático a cada push na `main`. Preset Astro: build `npm run build`, output `dist`. Node 24 (`.node-version`). URL: <https://blog.granudoz.workers.dev>.
 
-Quando o domínio próprio entrar: adicionar em Pages → Custom domains e trocar `site` em `astro.config.mjs`.
+Quando o domínio próprio entrar: adicionar no worker → Settings → Domains & Routes e trocar `site` em `astro.config.mjs`.
 
 ## Fora do escopo da v1
 
