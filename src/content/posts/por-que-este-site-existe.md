@@ -1,23 +1,24 @@
 ---
 title: 'Por que este site *existe*'
-description: 'Tem assunto que não rende vídeo: nichado demais, longo demais ou pessoal demais pra câmera. Este é o lugar deles.'
+description: 'Tem assunto que não rende vídeo: perdi o timing, é nichado demais, ou simplesmente não liguei a câmera. Este é o lugar deles.'
 pubDate: 2026-09-13
 pill: 'Pessoal'
 ---
 
-Faz dez anos que eu produzo conteúdo pra internet. Nesse tempo, aprendi que o formato molda o assunto: o que vira Reel precisa caber em quarenta segundos, o que vira vídeo no YouTube precisa segurar atenção nos três primeiros. Isso não é reclamação, é só como funciona.
+Tem assunto que não rende vídeo. Às vezes porque não tive tempo de gravar e perdi o timing do acontecimento. Às vezes porque é nichado demais e ficaria extenso pra desenvolver num vídeo. E às vezes porque, simplesmente, não tive a motivação ou a disciplina pra ligar a câmera e falar sobre aquilo.
 
-Só que sobra coisa de fora.
+Este site é o lugar deles.
 
-## O que não rende vídeo
+## Dez anos de plataforma
 
-Tem três tipos de assunto que eu nunca consigo levar pra câmera:
+Faz dez anos que eu produzo conteúdo pra internet. Nesse tempo passei por YouTube, Instagram, Twitch e TikTok, e cada plataforma molda o conteúdo do seu jeito. O Reels precisa caber em 40 segundos pra atingir o sweet spot. O YouTube precisa prender o espectador nos primeiros minutos. A Twitch é uma bagunça e, ao meu ver, não vale mais o transtorno. E o TikTok virou um Shoptime.
 
-- **Nichado demais.** Aquele framework de análise de jogo que interessa a vinte pessoas, mas interessa muito.
-- **Longo demais.** Raciocínio que precisa de dois mil palavras pra fechar e não sobrevive a corte.
-- **Pessoal demais.** Coisa que eu escrevo com calma mas não falo olhando pra lente.
+## O que você vai encontrar aqui
 
-Esse site é pra esses três.
+- **Nichado demais.** Aquela teoria ou análise de framework de jogo que só interessa umas cinco pessoas.
+- **Longo demais.** Raciocínio que precisa de duas mil palavras pra fechar e não sobrevive a corte.
+- **Indicações e dicas.** Jogos que valem a pena e os gratuitos, quando entram nas plataformas.
+- **Qualquer outra coisa** que eu não tiver tempo de gravar.
 
 ## O que ele não é
 
