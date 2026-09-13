@@ -13,6 +13,8 @@ npm run dev
 
 Abre em <http://localhost:4321>. Em dev, posts com `draft: true` aparecem; no build, não.
 
+`npm run check` roda o type-check dos `.astro` e do schema dos posts. Vale rodar antes de commitar quando mexer em componente.
+
 ## Escrever um post
 
 1. Crie um arquivo em `src/content/posts/nome-do-post.md`. O nome do arquivo vira a URL (`/posts/nome-do-post/`).
