@@ -1,0 +1,93 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Capa from './Capa.astro';
+import { formatarData, tituloHtml } from '../consts';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, cover, coverAlt, pill } = post.data;
+const href = `/posts/${post.id}/`;
+---
+
+<section class="hero">
+  <a href={href} class="hero__capa">
+    <Capa cover={cover} alt={coverAlt} loading="eager" widths={[768, 1200, 1800]} variante="hero" />
+  </a>
+  <div class="container hero__conteudo">
+    <div class="hero__meta">
+      {pill && <span class="pill">{pill}</span>}
+      <time class="rotulo" datetime={pubDate.toISOString()}>{formatarData(pubDate)}</time>
+    </div>
+    <h1 class="hero__titulo display">
+      <a href={href} set:html={tituloHtml(title)} />
+    </h1>
+    <p class="hero__descricao">{description}</p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: min(72vh, 720px);
+    display: flex;
+    align-items: flex-end;
+    isolation: isolate;
+  }
+
+  .hero__capa {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    display: block;
+  }
+
+  /* gradiente carvão de baixo pra cima, pra o título sentar em cima da capa */
+  .hero__capa::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      var(--carvao) 0%,
+      color-mix(in srgb, var(--carvao) 75%, transparent) 40%,
+      color-mix(in srgb, var(--carvao) 15%, transparent) 75%,
+      transparent 100%
+    );
+  }
+
+  .hero__conteudo {
+    padding-block: var(--space-8) var(--space-12);
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .hero__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .hero__titulo {
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    max-width: 16ch;
+    text-wrap: balance;
+  }
+
+  .hero__titulo a {
+    transition: color var(--transicao);
+  }
+
+  .hero__titulo a:hover {
+    color: var(--magenta);
+  }
+
+  .hero__descricao {
+    max-width: 60ch;
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    font-weight: 500;
+    color: var(--texto-mudo);
+  }
+</style>

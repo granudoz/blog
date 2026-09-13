@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import PostCard from '../components/PostCard.astro';
+
+// drafts aparecem só em `npm run dev`, nunca no build
+const posts = (await getCollection('posts', ({ data }) => import.meta.env.DEV || !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const [destaque, ...demais] = posts;
+---
+
+<Base>
+  {destaque && <Hero post={destaque} />}
+
+  {
+    demais.length > 0 && (
+      <section class="container grid-posts" aria-label="Mais textos">
+        {demais.map((post) => (
+          <PostCard post={post} />
+        ))}
+      </section>
+    )
+  }
+
+  {
+    posts.length === 0 && (
+      <section class="container vazio">
+        <h1 class="display">Em breve</h1>
+      </section>
+    )
+  }
+</Base>
+
+<style>
+  .grid-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  .vazio {
+    padding-block: var(--space-16);
+  }
+
+  .vazio h1 {
+    font-size: clamp(3rem, 10vw, 7rem);
+  }
+</style>

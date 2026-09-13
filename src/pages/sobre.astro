@@ -1,0 +1,119 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { SITE } from '../consts';
+import recorte from '../assets/wallace-recorte.png';
+---
+
+<Base title="Sobre" description="Quem escreve aqui e por que este site existe.">
+  <section class="sobre container">
+    <div class="sobre__foto corte-diagonal">
+      <Image
+        src={recorte}
+        alt="Wallace, de touca vinho, óculos e barba, sorrindo"
+        widths={[400, 640, 900]}
+        sizes="(min-width: 900px) 420px, 80vw"
+        loading="eager"
+        class="sobre__recorte"
+      />
+    </div>
+
+    <div class="sobre__texto">
+      <p class="rotulo">Quem sou eu</p>
+      <h1 class="display sobre__titulo">Um canal de <em>uma pessoa só</em></h1>
+
+      <div class="prose">
+        <p>
+          Tenho 35 anos, sou tech product manager e engenheiro de software, e crio conteúdo para
+          internet há 10 anos. O GranudoZ é um projeto pessoal, produzido sozinho, sem equipe e sem
+          departamento comercial.
+        </p>
+        <p>
+          O canal mistura análise e crítica de jogos com relatos abertos sobre a minha jornada de
+          emagrecimento e sobre como é viver com TDAH. A proposta central é reflexão, humor e
+          honestidade, com conteúdo pautado por experiência real.
+        </p>
+        <p>
+          Este site existe pra falar do que não rende vídeo: assunto nichado demais, longo demais ou
+          pessoal demais pra câmera. Sem algoritmo no meio.
+        </p>
+      </div>
+
+      <ul class="sobre__redes" aria-label="Redes">
+        <li><a class="pill" href={SITE.youtube} rel="me noopener" target="_blank">YouTube · GranudoZ</a></li>
+        <li><a class="pill pill--laranja" href={SITE.instagram} rel="me noopener" target="_blank">Instagram · @granudoz</a></li>
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .sobre {
+    display: grid;
+    gap: var(--space-8);
+    padding-block: var(--space-8);
+  }
+
+  .sobre__foto {
+    border-radius: var(--radius-lg);
+    aspect-ratio: 1;
+    max-width: 420px;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  /* base do recorte escurecendo em carvão, como no avatar oficial */
+  .sobre__foto::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 40%;
+    background: linear-gradient(to top, var(--carvao), transparent);
+    pointer-events: none;
+  }
+
+  .sobre__recorte {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    padding-top: 6%;
+  }
+
+  .sobre__texto {
+    display: grid;
+    gap: var(--space-6);
+    align-content: start;
+  }
+
+  .sobre__titulo {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    max-width: 14ch;
+  }
+
+  .sobre__redes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .sobre__redes .pill {
+    font-size: 0.8rem;
+    padding: 0.6em 1em;
+  }
+
+  @media (min-width: 900px) {
+    .sobre {
+      grid-template-columns: 420px 1fr;
+      gap: var(--space-12);
+      padding-block: var(--space-16);
+    }
+  }
+</style>

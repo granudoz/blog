@@ -1,0 +1,62 @@
+---
+import { SITE } from '../consts';
+import simbolo from '../assets/simbolo-reduzido.svg';
+
+const atual = Astro.url.pathname;
+---
+
+<header class="header">
+  <div class="container header__inner">
+    <a href="/" class="marca" aria-label={`${SITE.nome} — início`}>
+      <img src={simbolo.src} width="32" height="32" alt="" />
+      <span class="marca__nome display">{SITE.nome}</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="/sobre" class="nav__link rotulo" aria-current={atual === '/sobre' ? 'page' : undefined}>
+        Sobre
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: color-mix(in srgb, var(--carvao) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--borda);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .marca {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .marca__nome {
+    font-size: 1.5rem;
+    line-height: 1;
+    padding-top: 0.1em;
+  }
+
+  .nav__link {
+    color: var(--texto);
+    padding: var(--space-2) 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color var(--transicao), color var(--transicao);
+  }
+
+  .nav__link:hover,
+  .nav__link[aria-current='page'] {
+    border-bottom-color: var(--magenta);
+  }
+</style>

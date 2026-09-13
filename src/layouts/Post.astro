@@ -1,0 +1,116 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Base from './Base.astro';
+import Capa from '../components/Capa.astro';
+import { formatarData, tempoDeLeitura, tituloHtml, tituloTexto } from '../consts';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, cover, coverAlt, pill } = post.data;
+const minutos = tempoDeLeitura(post.body);
+---
+
+<Base
+  title={tituloTexto(title)}
+  description={description}
+  type="article"
+  image={cover?.src}
+>
+  <article class="post">
+    <header class="post__cabecalho">
+      <div class="post__capa">
+        <Capa cover={cover} alt={coverAlt} loading="eager" widths={[768, 1200, 1800]} variante="hero" />
+      </div>
+      <div class="container post__intro">
+        <div class="post__meta">
+          {pill && <span class="pill">{pill}</span>}
+          <time class="rotulo" datetime={pubDate.toISOString()}>{formatarData(pubDate)}</time>
+          <span class="rotulo">{minutos} min de leitura</span>
+        </div>
+        <h1 class="post__titulo display" set:html={tituloHtml(title)} />
+        <p class="post__descricao">{description}</p>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="prose post__corpo">
+        <slot />
+      </div>
+      <p class="post__voltar">
+        <a href="/">← Voltar pro início</a>
+      </p>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .post__cabecalho {
+    position: relative;
+    min-height: min(60vh, 560px);
+    display: flex;
+    align-items: flex-end;
+    isolation: isolate;
+    margin-bottom: var(--space-12);
+  }
+
+  .post__capa {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+
+  .post__capa::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      var(--carvao) 0%,
+      color-mix(in srgb, var(--carvao) 75%, transparent) 45%,
+      color-mix(in srgb, var(--carvao) 10%, transparent) 80%,
+      transparent 100%
+    );
+  }
+
+  .post__intro {
+    padding-block: var(--space-8) var(--space-6);
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .post__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .post__titulo {
+    font-size: clamp(2.25rem, 6vw, 4.5rem);
+    max-width: 18ch;
+    text-wrap: balance;
+  }
+
+  .post__descricao {
+    max-width: var(--largura-leitura);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--texto-mudo);
+  }
+
+  .post__voltar {
+    margin-top: var(--space-12);
+  }
+
+  .post__voltar a {
+    color: var(--laranja);
+    font-weight: 500;
+  }
+
+  .post__voltar a:hover {
+    text-decoration: underline;
+  }
+</style>

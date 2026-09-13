@@ -1,0 +1,94 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Capa from './Capa.astro';
+import { formatarData, tituloHtml } from '../consts';
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, cover, coverAlt, pill } = post.data;
+const href = `/posts/${post.id}/`;
+---
+
+<article class="card">
+  <a href={href} class="card__capa" tabindex="-1" aria-hidden="true">
+    <Capa cover={cover} alt={coverAlt} widths={[480, 768]} sizes="(min-width: 768px) 400px, 100vw" />
+  </a>
+  <div class="card__corpo">
+    <div class="card__meta">
+      {pill && <span class="pill">{pill}</span>}
+      <time class="rotulo" datetime={pubDate.toISOString()}>{formatarData(pubDate)}</time>
+    </div>
+    <h2 class="card__titulo display">
+      <a href={href} set:html={tituloHtml(title)} />
+    </h2>
+    <p class="card__descricao">{description}</p>
+  </div>
+</article>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--superficie);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--borda);
+    transition: transform var(--transicao), border-color var(--transicao);
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--magenta) 50%, transparent);
+  }
+
+  .card__capa {
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .card__corpo {
+    padding: var(--space-4) var(--space-4) var(--space-6);
+    display: grid;
+    gap: var(--space-3);
+    align-content: start;
+  }
+
+  .card__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .card__titulo {
+    font-size: 1.75rem;
+    text-wrap: balance;
+  }
+
+  .card__titulo a::after {
+    /* torna o card inteiro clicável sem link duplicado pra leitor de tela */
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .card {
+    position: relative;
+  }
+
+  .card__titulo a:hover {
+    color: var(--magenta);
+  }
+
+  .card__descricao {
+    color: var(--texto-mudo);
+    font-size: 0.95rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

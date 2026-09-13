@@ -1,0 +1,67 @@
+---
+import { SITE } from '../consts';
+const ano = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <p class="footer__assinatura display">{SITE.assinatura}</p>
+    <ul class="footer__redes" aria-label="Redes">
+      <li><a href={SITE.youtube} rel="me noopener" target="_blank">YouTube</a></li>
+      <li><a href={SITE.instagram} rel="me noopener" target="_blank">Instagram</a></li>
+    </ul>
+    <p class="footer__copy rotulo">© {ano} {SITE.nome}</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: var(--space-16);
+    border-top: 1px solid var(--borda);
+    padding-block: var(--space-12) var(--space-8);
+  }
+
+  .footer__inner {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .footer__assinatura {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    max-width: 14ch;
+  }
+
+  .footer__redes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .footer__redes a {
+    display: inline-block;
+    padding: 0.5em 1em;
+    border-radius: 999px;
+    border: 1px solid var(--borda);
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: border-color var(--transicao), background var(--transicao);
+  }
+
+  .footer__redes a:hover {
+    border-color: var(--magenta);
+    background: var(--superficie);
+  }
+
+  @media (min-width: 768px) {
+    .footer__inner {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+    }
+
+    .footer__copy {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

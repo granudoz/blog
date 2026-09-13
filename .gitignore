@@ -1,0 +1,20 @@
+# build
+dist/
+.astro/
+
+# deps
+node_modules/
+
+# env
+.env
+.env.*
+
+# os / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# notas internas
+.agents/
+.codex/
